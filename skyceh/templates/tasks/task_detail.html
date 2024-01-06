@@ -1,0 +1,25 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h1>{{ task.dat }}</h1>
+<p>Задача: {{ task.task }}</p>
+
+{% if task.file %}
+<p>Файл: <a href="{{ task.file.url }}">{{ task.file.name }}</a></p>
+{% else %}
+<p>Файл не загружен.</p>
+{% endif %}
+
+{% if task.image %}
+<p>Изображение: <img src="{{ task.image.url }}" alt="{{ task.image.name }}"></p>
+{% else %}
+<p>Изображение не загружено.</p>
+{% endif %}
+
+<p>Готово: {{ task.now }} из {{ task.total }}</p>
+<p>Участок: {{ task.spot }}</p>
+<p>Сотрудник: {{ task.man }}</p>
+<p>Срок: {{ task.deadline }}</p>
+<p>Готово: {{ task.ready }}</p>
+
+{% endblock %}

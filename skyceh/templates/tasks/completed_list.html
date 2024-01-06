@@ -1,0 +1,54 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="text-center">Задачи в работе</h1>
+{% if task_list %}
+<table class="table table-hover table-info">
+    <thead>
+        <tr>
+            <th scope="col">Дата</th>
+            <th scope="col">Задача</th>
+            <th scope="col">Файл</th>
+            <th scope="col">Изображение</th>
+            <th scope="col">Участок</th>
+            <th scope="col">Срок</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in task_list %}
+        {% if task.ready == True %}
+        <tr>
+            <th scope="row">
+                <a href="#">{{ task.dat }}</a>
+            </th>
+            <td><a href="{{ task.get_absolute_url }}">{{ task.task }}</a></td>
+            {% if task.file %}
+            <td>
+                Файл: <a href="{{ task.file.url }}">{{ task.file.name }}</a>
+            </td>
+            {% else %}
+            <td>
+                Файл не загружен.
+            </td>
+            {% endif %}
+
+            {% if task.image %}
+            <td>
+                Изображение: <img src="{{ task.image.url }}" alt="{{ task.image.name }}">
+            </td>
+            {% else %}
+            <td>
+                Изображение не загружено.
+            </td>
+            {% endif %}
+            <td>{{ task.man }}</td>
+            <td>{{ task.deadline }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+
+{% endblock %}

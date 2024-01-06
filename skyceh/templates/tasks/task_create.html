@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Новый заказ</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Создать">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $("#id_spot").change(function () {
+        var spot_id = $(this).val();
+        $.ajax({
+            url: '/load_managers/',
+            data: { 'spot_id': spot_id },
+            dataType: 'json',
+            success: function (data) {
+                var manSelect = $("#id_man");
+                manSelect.empty();
+                $.each(data, function (key, value) {
+                    manSelect.append($("<option></option>")
+                        .attr("value", value.man)
+                        .text(value.man));
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

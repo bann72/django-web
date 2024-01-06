@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="text-center">Плазма: задачи в работе</h1>
+{% if tasks %}
+<table class="table table-hover table-info">
+    <thead>
+        <tr>
+            <th scope="col">Дата</th>
+            <th scope="col">Задача</th>
+            <th scope="col">Ответственный</th>
+            <th scope="col">Прогресс</th>
+            <th scope="col">Срок</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        {% if task.ready == True %}
+        <tr>
+            <th>{{ task.dat }}</th>
+            <td>{{ task.task }}</td>
+            <td>{{ task.man }}</td>
+            <td>{{ task.now }}/{{ task.total }} </td>
+            <td>{{ task.deadline }}</td>
+            <td><a href="{% url 'do_plasma_task' pk=task.id %}">Перейти к выполнению</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

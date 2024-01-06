@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Main page</h1>
+<p>Welcome</p>
+<h2>Dynamic content</h2>
+<p>Now count orders in DB :</p>
+<ul>
+    <li><strong>Count orders:</strong> {{ num_ord }}</li>
+    <li><strong>Count item:</strong> {{ num_dord }}</li>
+</ul>
+{% endblock %}

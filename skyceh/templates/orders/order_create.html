@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<body class="bg-body-tertiary">
+	<div class="container">
+		<main>
+			<div class="row g-5">
+				<div class="col-md-7 col-lg-8">
+					<h2 class="mb-3">Новый заказ</h2>
+					<form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+						{% csrf_token %}
+						<div class="row g-3">
+							<div class="col-sm-3">
+								<label for="firstName" class="form-label">Номер заказа</label>
+								<input type="text" class="form-control" id="firstName" placeholder="" value=""
+									name="znum" required>
+							</div>
+							<div class="col-sm-3">
+								<label for="firstName" class="form-label">Количество</label>
+								<input type="text" class="form-control" id="firstName" placeholder="" value=""
+									name="count" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="firstName" class="form-label">Счет</label>
+								<input type="text" class="form-control" id="firstName" placeholder="" value=""
+									name="invorder" required>
+							</div>
+							<div class="col-sm-12">
+								<label for="firstName" class="form-label">Изделие</label>
+								<input type="text" class="form-control" id="firstName" placeholder="" value=""
+									name="prod" required>
+							</div>
+							<div class="col-sm-12">
+								<label for="firstName" class="form-label">Заказчик</label>
+								<input type="text" class="form-control" id="firstName" placeholder="" value=""
+									name="client" required>
+							</div>
+							<div class="col-sm-3">
+								<label for="firstName" class="form-label">Срок сдачи</label>
+								<input type="date" class="form-control" id="firstName" placeholder="" value=""
+									name="lastday" required>
+							</div>
+							<div class="col-sm-9">
+								<label for="formFile" class="form-label">Файл</label>
+								<input class="form-control" type="file" id="formFile" name="file" required>
+							</div>
+						</div>
+						<hr class="my-4">
+						<button class="w-100 btn btn-primary btn-lg" type="submit">Добавить заказ</button>
+					</form>
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+{% endblock %}

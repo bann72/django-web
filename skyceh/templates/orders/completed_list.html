@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="text-center">Выполненные заказы</h1>
+{% if mainorderinfo_list %}
+<table class="table table-hover table-info">
+  <thead>
+    <tr>
+      <th scope="col">Заказ №</th>
+      <th scope="col">Счет</th>
+      <th scope="col">Изделие</th>
+
+      <th scope="col">Количество</th>
+      <th scope="col">Заказчик</th>
+
+      <th scope="col">Срок сдачи</th>
+      <th scope="col">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in mainorderinfo_list %}
+    {% if order.status == 'Выполнен' %}
+    <tr>
+      <th scope="row">
+        <a href="{{ order.get_absolute_url }}">{{ order.znum }}</a>
+      </th>
+      <td>{{ order.invorder }}</td>
+      <td><a href="{{ order.get_absolute_url }}">{{ order.prod }}</a></td>
+      <td>{{ order.count }}</td>
+      <td>{{ order.client }}</td>
+
+      <td>{{ order.lastday }}</td>
+      <td>Выполнен</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

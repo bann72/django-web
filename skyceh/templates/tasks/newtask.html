@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<body class="bg-body-tertiary">
+    <div class="container">
+        <main>
+            <div class="row g-5">
+                <div class="col-md-7 col-lg-8">
+                    <h2 class="mb-3">Новая задача для плазмы</h2>
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-sm-8">
+                                <label for="id_man" class="form-label">Ответственный</label>
+                                <select class="form-control" id="id_man" name="man" required>
+                                    <option value="" selected disabled>Выберите ответственного</option>
+                                    <option value="оператор чпу">оператор ЧПУ</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="firstName" class="form-label">Срок</label>
+                                <input type="date" class="form-control" id="firstName" placeholder="" value=""
+                                    name="deadline" required>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="firstName" class="form-label">Задача</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                    name="task" required>
+                            </div>
+                            <div class="col-sm-9">
+                                <label for="formFile" class="form-label">Файл</label>
+                                <input class="form-control" type="file" id="formFile" name="file" required>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="firstName" class="form-label">Количество</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                    name="total" required>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="formFile" class="form-label">Изображение</label>
+                                <input class="form-control" type="file" id="formFile" name="image" required>
+                            </div>
+                            <input type="hidden" name="spot" value="плазма">
+
+                            <hr class="my-4">
+                            <button class="w-100 btn btn-primary btn-lg" type="submit">Добавить задачу</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+{% endblock %}

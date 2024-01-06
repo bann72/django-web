@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="text-center">Заказы в работе</h1>
+{% if inv %}
+<table class="table table-hover table-info">
+    <thead>
+        <tr>
+            <th scope="col">Заказ №</th>
+            <th scope="col">Счет</th>
+            <th scope="col">Изделие</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Заказчик</th>
+
+            <th scope="col">Срок сдачи</th>
+            <th scope="col">Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i1 in inv %}
+        <tr>
+            <th scope="row">
+                <a href="{{ i1.get_absolute_url }}">{{ i1.znum }}</a>
+            </th>
+            <td>{{ i1.invorder }}</td>
+            <td><a href="{{ i1.get_absolute_url }}">{{ i1.prod }}</a></td>
+            <td>{{ i1.count }}</td>
+            <td>{{ i1.client }}</td>
+
+            <td>{{ i1.lastday }}</td>
+            <td>{{ i1.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Not orders in BD</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="text-center">Плазма: задачи в работе</h1>
+
+<table class="table table-hover table-info">
+    <thead>
+        <tr>
+            <th scope="col">Задача</th>
+            <th scope="col">Файл резки</th>
+            <th scope="col">Раскрой (фото)</th>
+            <th scope="col">Вырезано</th>
+            <th scope="col">Всего</th>
+            <th scope="col">Срок</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ task.task }}</td>
+            <td>{{ task.file }}</td>
+            <td>{{ task.image }} </td>
+            <td>{{ task.now }}</td>
+            <td>{{ task.total }}</td>
+            <td>{{ task.deadline }}</td>
+        </tr>
+    </tbody>
+</table>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Сохранить">
+</form>
+
+{% endblock %}

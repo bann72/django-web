@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% load custom_filters %}
+{% block content %}
+
+<div class="text-center fw-semibold fs-2">{{ mainorderinfo.prod }} / {{ mainorderinfo.count }} шт. / <text
+        class="fw-bold"> Зав. заказ №{{ mainorderinfo.znum }} </text> <br> заказчик {{ mainorderinfo.client }} / Счет
+    №{{ mainorderinfo.invorder }} / <text class="fw-bold"> срок до {{ mainorderinfo.lastday }} </text>/
+    Статус: {{ mainorderinfo.status }}
+    {% if user|is_in_group:'chief' %}
+    {% if mainorderinfo.status == 'В работе' %}
+    <a class="btn btn-primary btn-lg" href="{% url 'stupd' znum=mainorderinfo.znum %}" role="button">Заказ выполнен</a>
+    {% else %}
+    <a class="btn btn-primary btn-lg" href="{% url 'stupd' znum=mainorderinfo.znum %}" role="button">Вернуть в
+        работу</a>
+    {% endif %}
+    {% endif %}
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="col text-center">
+        <embed src="{{ mainorderinfo.file.url }}" type="application/pdf" width="100%" height="500px">
+    </div>
+</div>
+
+
+
+{% endblock %}
